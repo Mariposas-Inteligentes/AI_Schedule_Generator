@@ -3,15 +3,8 @@
 
 #include "agent.hpp"
 
+#include "common.hpp"
 #include <vector>
-
-#define SAT_DAY 0
-#define SAT_NIGHT 1
-#define SUN_DAY 2
-#define SUN_NIGHT 3
-
-#define AMOUNT_WEEKS 4
-#define AMOUNT_DAYS 4
 
 class microbiologist : agent {
   private:
@@ -28,7 +21,7 @@ class microbiologist : agent {
     int get_id();
     void set_id(int id);   
     void modify_preferences(int week, int day, char value);
-    float look_at_role(std::vector<std::vector<int> > role);
+    double look_at_role(std::vector<std::vector<int> > role);
 };
 
 #endif

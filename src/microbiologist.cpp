@@ -1,7 +1,7 @@
 #include "microbiologist.hpp"
 
 microbiologist::microbiologist(int id) 
-    : id(id), preferences(4, std::vector<char>(AMOUNT_WEEKS, NOT_WORKING)) {
+    : id(id), preferences(AMOUNT_DAYS, std::vector<char>(AMOUNT_WEEKS, NOT_WORKING)) {
 }
 
 microbiologist::microbiologist(int id, std::vector<std::vector<char> > preferences) 
@@ -20,19 +20,19 @@ void microbiologist::set_id(int id) {
 } 
   
 void microbiologist::modify_preferences(int week, int day, char value) {
-  this->preferences[week][day] = value;
+  this->preferences[day][week] = value;
 }
 
-float microbiologist::look_at_role(std::vector<std::vector<int> > role) {
-  float grade = 0;
+double microbiologist::look_at_role(std::vector<std::vector<int> > role) {
+  double grade = 0;
 
-  for (int week = 0; week < AMOUNT_WEEKS; ++week) {
-    for (int day = 0; day < AMOUNT_DAYS; ++day) {
-      if (role[week][day] == this->id) {  // have to work
-        if (this->preferences[week][day] == WORKING) {
+  for (int day = 0; day < AMOUNT_DAYS; ++day) {
+    for (int week = 0; week < AMOUNT_WEEKS; ++week) {
+      if (role[day][week] == this->id) {  // have to work
+        if (this->preferences[day][week] == WORKING) {
           ++grade; // If I wanted to work, it is good
         } else {
-          if (this->preferences[week][day] == VACATIONS) {
+          if (this->preferences[day][week] == VACATIONS) {
             --grade; // If I was on vacation it is bad
           }
           // If I didn't want to work but was asigned to work, it does not affect much
