@@ -1,12 +1,10 @@
 #ifndef MICROBIOLOGIST
 #define MICROBIOLOGIST
 
-#include "agent.hpp"
-
 #include "common.hpp"
 #include <vector>
 
-class microbiologist : agent {
+class microbiologist {
   private:
     int id;
     std::vector<std::vector<char> > preferences;

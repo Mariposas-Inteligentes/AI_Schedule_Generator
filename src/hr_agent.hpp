@@ -6,9 +6,7 @@
 #include <numeric>
 #include <vector>
 
-#include "agent.hpp"
-
-class hr_agent : agent {
+class hr_agent {
   private:
     int amount_workers;
     std::vector<std::vector<std::vector<int> > > schedule;
