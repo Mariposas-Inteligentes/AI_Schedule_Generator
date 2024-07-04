@@ -23,7 +23,7 @@ void microbiologist::modify_preferences(int week, int day, char value) {
   this->preferences[day][week] = value;
 }
 
-double microbiologist::look_at_role(std::vector<std::vector<int> > role) {
+double microbiologist::fitness(std::vector<std::vector<int> > role) {
   double grade = 0;
 
   for (int day = 0; day < AMOUNT_DAYS; ++day) {

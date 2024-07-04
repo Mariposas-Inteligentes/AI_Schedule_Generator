@@ -1,0 +1,17 @@
+T N N N N T T N N N N T T N N N N T T N N N N T
+N N N T T T N N N N N T N N N T T T N N N N N T
+T N N N N T T N N N N T T N N N N T T N N N N T
+T N N N N T T N N N N T T N N N N T T N N N N T
+T N N N N T T N N N N T T N N N N T T N N N N T
+T N N N N T T N N N N T T N N N N T T N N N N T
+T N N N N T T N N N N T T N N N N T T V V V V T
+T N N N N N T N T T N N T N N N N N T N N N N N
+T N N N N T T N N N N T T N N N N T T N N N N T
+T N N N N T T N N N N T T N N N N T T N N N N T
+T N N N N T T N N N N T T N N N N T T N N N N T
+T N N N N T T N N N N T T N N N N T T N N N N T
+T N N N N T T N N N N T T N N N N T T N N N N T
+T N N N N T T N N N N T T N N N N T T N N N N T
+T N N N N T T N N N N T T N N N N T T N N N N T
+T N N N N T T N N N N T T N N N N T T N N N N T
+T N N N N T T V V V V T T N N N N T T N N N N T
