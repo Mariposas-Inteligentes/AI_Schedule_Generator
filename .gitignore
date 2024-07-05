@@ -1,3 +1,7 @@
 *.out
+src/a.out
 *.exe
 .vscode
+bin
+build
+Makefile
