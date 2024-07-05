@@ -67,10 +67,10 @@ std::vector<std::vector<int> >& role::get_genome() {
 }
 
 std::ostream& operator<<(std::ostream& os, const role& r) {
-  os << "Sat Day\tSat Night\tSun Day\tSun Night";
+  os << "Sat Day\t\tSat Night\tSun Day\t\tSun Night\n";
   for(int week = 0; week< AMOUNT_WEEKS; ++week) {
     for(int day = 0; day< AMOUNT_DAYS; ++day) {
-      os << r.genome[week][day] << "\t" << std::endl;
+      os << r.genome[week][day] << "\t\t";
     }
     os << "\n";
   }

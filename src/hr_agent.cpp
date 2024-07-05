@@ -132,16 +132,16 @@ double hr_agent::calculate_variance(std::vector<int> & numbers) {
 // std::vector<std::vector<std::vector<int> > > schedule;
 void  hr_agent::print_schedule(){
   for (int week = 0; week < AMOUNT_WEEKS; ++week){
-    std::cout << "Week: " << (week+1) << ": \n";
+    std::cout << "Week " << (week+1) << ": \n";
     // Friday
     std::cout << "\tFriday night: \n";
     for (int micro = 0; micro < this->schedule[week][FRIDAY].size(); ++micro) {
-      std::cout << "\t\tMicrobiologist: " << this->schedule[week][FRIDAY][micro] << "\n";
+      std::cout << "\t\tMicrobiologist " << this->schedule[week][FRIDAY][micro] << "\n";
     }
     // Monday
     std::cout << "\tMonday morning: \n";
     for (int micro = 0; micro < this->schedule[week][MONDAY].size(); ++micro) {
-      std::cout << "\t\tMicrobiologist: " << this->schedule[week][FRIDAY][micro] << "\n";
+      std::cout << "\t\tMicrobiologist " << this->schedule[week][FRIDAY][micro] << "\n";
     }
   }
 }

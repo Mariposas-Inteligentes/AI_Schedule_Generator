@@ -17,9 +17,16 @@ void genetic_algorithm::update_fitness(std::vector<role>& population) {
     this->global_fitness += this->fitness[role];
   }
   this->global_fitness /= AMOUNT_POPULATION;
+
+  // TODO(lUIS): BORRAR
+  std::cout << "global fitness: " << global_fitness << "\n";
 }
 
 void genetic_algorithm::run(){
+
+  // TODO(lUIS): BORRAR
+  std::cout << "Antes de generar initial population \n";
+
   // Generate initial population
   this->role_environment->initial_population(AMOUNT_POPULATION, this->current_population);
 
@@ -76,7 +83,8 @@ void genetic_algorithm::show_population() {
   this->show_schedule();
   std::cout << "\n\n Weekends" << std::endl;
   for (int i = 0; i < PRINT_CHROMOSOMES; ++i) {
-    std::cout << "\nRole " << i+1 << std::endl;
+    std::cout << "\nRole " << i+1 << " - Fitness: " <<
+        this->role_environment->fitness(this->current_population[i].get_genome()) <<std::endl;
     std::cout << this->current_population[i];
   }
 }

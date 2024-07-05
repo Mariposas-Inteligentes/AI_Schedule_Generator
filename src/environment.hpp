@@ -14,6 +14,7 @@ class environment {
     hr_agent* hr;
     std::vector<microbiologist> microbiologists;
     void create_microbiologists();
+    void set_hr_schedule();
 
   public:
     environment(int amount_microbiologist);
