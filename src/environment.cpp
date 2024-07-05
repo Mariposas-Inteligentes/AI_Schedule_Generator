@@ -28,7 +28,7 @@ double environment::fitness(std::vector<std::vector<int> > genome) {
 }
 
 void environment::set_hr_schedule() {
-  std::ifstream file("microbiologists_weekdays.txt");
+  std::ifstream file("src/microbiologists_workdays.txt");
   if (!file.is_open()) {
     std::cerr << "Error opening weekdays file" << std::endl;
     return;
@@ -58,7 +58,7 @@ void environment::set_hr_schedule() {
 }
 
 void environment::create_microbiologists() {
-    std::ifstream file("./microbiologists_weekends.txt");
+    std::ifstream file("src/microbiologists_weekends.txt");
     if (!file.is_open()) {
       std::cerr << "Error opening weekend file" << std::endl;
       return;

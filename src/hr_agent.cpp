@@ -1,5 +1,8 @@
 #include "hr_agent.hpp"
 
+// (nosotros): borrar
+#include <iostream>
+
 hr_agent::hr_agent(int amount_workers)
     : amount_workers(amount_workers)
     , schedule(AMOUNT_WEEKS, std::vector<std::vector<int> >(2)){
@@ -16,9 +19,24 @@ double hr_agent::fitness(std::vector<std::vector<int> > genome){
   double fitness = 0;
 
   fitness += 0.7 * this->consult_legal(genome);
+
+  // TODO(nosotros): borrar
+  // std::cout << "Fitnes pos legal: " << fitness << std::endl;
+
   fitness += 0.1 * this->consult_distribution(genome);
+
+  // TODO(nosotros): borrar
+  // std::cout << "Fitnes pos dist: " << fitness << std::endl;
+
   fitness += 0.1 * this->consult_weekend_dist(genome);
+
+  // TODO(nosotros): borrar
+  // std::cout << "Fitnes pos weekend dist: " << fitness << std::endl;
+
   fitness += 0.1 * this->consult_equality(genome);
+
+  // TODO(nosotros): borrar
+  // std::cout << "Fitnes pos equality: " << fitness << std::endl;
 
   return fitness;
 }
@@ -48,6 +66,8 @@ double hr_agent::consult_legal(std::vector<std::vector<int> > genome){
     // Sunday night to Monday
     this->check_pairing_week(genome, week, MONDAY, SUN_NIGHT, fitness);
   }
+
+  fitness /= (5 * AMOUNT_WEEKS);
 
   return fitness;
 }
@@ -129,7 +149,6 @@ double hr_agent::calculate_variance(std::vector<int> & numbers) {
   return variance;
 }
 
-// std::vector<std::vector<std::vector<int> > > schedule;
 void  hr_agent::print_schedule(){
   for (int week = 0; week < AMOUNT_WEEKS; ++week){
     std::cout << "Week " << (week+1) << ": \n";
@@ -140,8 +159,8 @@ void  hr_agent::print_schedule(){
     }
     // Monday
     std::cout << "\tMonday morning: \n";
-    for (int micro = 0; micro < this->schedule[week][MONDAY].size(); ++micro) {
-      std::cout << "\t\tMicrobiologist " << this->schedule[week][FRIDAY][micro] << "\n";
+    for (int micro2 = 0; micro2 < this->schedule[week][MONDAY].size(); ++micro2) {
+      std::cout << "\t\tMicrobiologist " << this->schedule[week][FRIDAY][micro2] << "\n";
     }
   }
 }

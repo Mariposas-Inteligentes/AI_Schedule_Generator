@@ -23,15 +23,11 @@ void genetic_algorithm::update_fitness(std::vector<role>& population) {
 }
 
 void genetic_algorithm::run(){
-
-  // TODO(lUIS): BORRAR
-  std::cout << "Antes de generar initial population \n";
-
   // Generate initial population
   this->role_environment->initial_population(AMOUNT_POPULATION, this->current_population);
 
   std::cout << "Initial population: \n";
-  this->show_population();
+  // this->show_population();
 
   // Calculate fitness of each chromosome
   this->update_fitness(this->current_population);
@@ -48,7 +44,7 @@ void genetic_algorithm::run(){
   }
   
   std::cout << "\n\nFinal population: \n";
-  this->show_population();
+  //// this->show_population();
 }
 
 void genetic_algorithm::crossover() {
@@ -81,10 +77,10 @@ void genetic_algorithm::mutate(int offspring1, int offspring2) {
 void genetic_algorithm::show_population() {
   this->sort_population_by_fitness(); 
   this->show_schedule();
-  std::cout << "\n\n Weekends" << std::endl;
+  std::cout << "\n\nWeekends" << std::endl;
   for (int i = 0; i < PRINT_CHROMOSOMES; ++i) {
-    std::cout << "\nRole " << i+1 << " - Fitness: " <<
-        this->role_environment->fitness(this->current_population[i].get_genome()) <<std::endl;
+    std::cout << "\nRole " << i+1 << " - Fitness: "   <<std::endl; // <<
+        // this->role_environment->fitness(this->current_population[i].get_genome()) <<std::endl;
     std::cout << this->current_population[i];
   }
 }
