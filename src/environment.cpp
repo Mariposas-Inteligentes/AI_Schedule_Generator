@@ -11,7 +11,7 @@ environment::~environment() {
   delete this->hr;
 }
 
-double environment::fitness(std::vector<std::vector<int> > genome) {
+double environment::fitness(std::vector<std::vector<int> >& genome) {
   double fitness = 0;
   double micro_fitness = 0;
 

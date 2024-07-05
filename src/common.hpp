@@ -14,10 +14,9 @@
 // Genetic Algorithm Parrameters
 
 #define PROBS_MUTATION 10
-#define PROBS_CROSSOVER 70
+#define PROBS_CROSSOVER 90
 
-#define AMOUNT_POPULATION 6
+#define AMOUNT_POPULATION 50
 #define AMOUNT_MICRO 17
 
-#define STOP_CONDITION 0.6
-#define MAX_ITERATIONS 500
+#define STOP_CONDITION 0.5

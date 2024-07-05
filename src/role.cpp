@@ -17,7 +17,7 @@ void role::create_random_genome() {
 role::~role() {
 }
 
-void role::crossover(role& dad, std::vector<role>& offsprings) {
+void role::crossover(role& dad, std::vector<role>& offsprings, int initial_pos) {
   // crossover probs
   int random = rand() % 101;
   int row_crossover = 0;
@@ -30,11 +30,11 @@ void role::crossover(role& dad, std::vector<role>& offsprings) {
     for (int row = 0; row < AMOUNT_WEEKS; ++row) {
       for (int col = 0; col < AMOUNT_DAYS; ++col) {
         if (row <= row_crossover && col <= col_crossover) {
-          offsprings[0].write_genome(row, col, dad.genome[row][col]);
-          offsprings[1].write_genome(row, col, this->genome[row][col]);
+          offsprings[initial_pos].write_genome(row, col, dad.genome[row][col]);
+          offsprings[initial_pos+1].write_genome(row, col, this->genome[row][col]);
         } else {
-          offsprings[0].write_genome(row, col, this->genome[row][col]);
-          offsprings[1].write_genome(row, col, dad.genome[row][col]);
+          offsprings[initial_pos].write_genome(row, col, this->genome[row][col]);
+          offsprings[initial_pos+1].write_genome(row, col, dad.genome[row][col]);
         }
       }
     }

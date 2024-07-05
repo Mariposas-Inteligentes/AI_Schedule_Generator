@@ -41,7 +41,7 @@ double hr_agent::fitness(std::vector<std::vector<int> > genome){
   return fitness;
 }
 
-double hr_agent::consult_legal(std::vector<std::vector<int> > genome){
+double hr_agent::consult_legal(std::vector<std::vector<int> >& genome){
   double fitness = 5 * AMOUNT_WEEKS;  // there are 5 possible mistakes per week
 
   for (int week = 0; week < AMOUNT_WEEKS; ++week) {
@@ -72,16 +72,16 @@ double hr_agent::consult_legal(std::vector<std::vector<int> > genome){
   return fitness;
 }
 
-void hr_agent::check_pairing_week(std::vector<std::vector<int> > genome
+void hr_agent::check_pairing_week(std::vector<std::vector<int> >& genome
     , int week, int day1, int day2, double& fitness) {
-  for (int micro = 0; micro < this->schedule[week][day1].size(); ++micro) {
+  for (size_t micro = 0; micro < this->schedule[week][day1].size(); ++micro) {
     if (this->schedule[week][day1][micro] == genome[week][day2]) {
       --fitness;
     }
   }
 }
 
-double hr_agent::consult_distribution(std::vector<std::vector<int> > genome){
+double hr_agent::consult_distribution(std::vector<std::vector<int> >& genome){
   std::vector<int> microbiologists_on_call(this->amount_workers, 0);
 
   for (int week = 0; week < AMOUNT_WEEKS; ++week) {
@@ -93,7 +93,7 @@ double hr_agent::consult_distribution(std::vector<std::vector<int> > genome){
   return this->calculate_variance(microbiologists_on_call);
 }
 
-double hr_agent::consult_weekend_dist(std::vector<std::vector<int> > genome){
+double hr_agent::consult_weekend_dist(std::vector<std::vector<int> >& genome){
   std::vector<int> microbiologists_income(this->amount_workers, 0);
 
   for (int week = 0; week < AMOUNT_WEEKS; ++week) {
@@ -106,7 +106,7 @@ double hr_agent::consult_weekend_dist(std::vector<std::vector<int> > genome){
   return this->calculate_variance(microbiologists_income);
 }
 
-double hr_agent::consult_equality(std::vector<std::vector<int> > genome){
+double hr_agent::consult_equality(std::vector<std::vector<int> >& genome){
   std::vector<int> microbiologists_on_call(this->amount_workers, 0);
   int no_call = 0;
   double fitness = 0;
@@ -149,7 +149,7 @@ double hr_agent::calculate_variance(std::vector<int> & numbers) {
   return variance;
 }
 
-void  hr_agent::print_schedule(){
+void hr_agent::print_schedule(){
   for (int week = 0; week < AMOUNT_WEEKS; ++week){
     std::cout << "Week " << (week+1) << ": \n";
     // Friday

@@ -27,12 +27,19 @@ void genetic_algorithm::run(){
   this->role_environment->initial_population(AMOUNT_POPULATION, this->current_population);
 
   std::cout << "Initial population: \n";
-  // this->show_population();
+  this->show_population();
 
   // Calculate fitness of each chromosome
   this->update_fitness(this->current_population);
 
+  // TODO(us): borrar
+  int cont = 0;
+
   while(this->global_fitness < STOP_CONDITION) {
+
+    // TODO(us): borrar
+    std::cout << "Iteracion " << cont++ << "___________________________\n";
+
     this->new_population.clear();
     // Crossover chromosomes and attempt to mutate them
     this->crossover();
@@ -44,7 +51,7 @@ void genetic_algorithm::run(){
   }
   
   std::cout << "\n\nFinal population: \n";
-  //// this->show_population();
+  this->show_population();
 }
 
 void genetic_algorithm::crossover() {
@@ -53,7 +60,7 @@ void genetic_algorithm::crossover() {
   for (int i = 0; i < AMOUNT_POPULATION; i += 2) {
     this->generate_parents(parent1, parent2);
     this->current_population[parent1].crossover(this->current_population[parent2]
-        , this->new_population);
+        , this->new_population, i);
     this->mutate(i, i+1);
   }
 }
@@ -61,7 +68,7 @@ void genetic_algorithm::crossover() {
 void genetic_algorithm::generate_parents(int& first_parent, int& second_parent) {
   first_parent = 0;
   second_parent = 0;
-  while (first_parent + second_parent <= this->global_fitness) {
+  while (first_parent + second_parent <= (this->global_fitness / 2)) {
     first_parent = rand() % AMOUNT_POPULATION;
     while (first_parent == second_parent) {
       second_parent = rand() % AMOUNT_POPULATION;
@@ -76,11 +83,11 @@ void genetic_algorithm::mutate(int offspring1, int offspring2) {
 
 void genetic_algorithm::show_population() {
   this->sort_population_by_fitness(); 
-  this->show_schedule();
+  // this->show_schedule();
   std::cout << "\n\nWeekends" << std::endl;
   for (int i = 0; i < PRINT_CHROMOSOMES; ++i) {
-    std::cout << "\nRole " << i+1 << " - Fitness: "   <<std::endl; // <<
-        // this->role_environment->fitness(this->current_population[i].get_genome()) <<std::endl;
+    std::cout << "\nRole " << i+1 << " - Fitness: " <<
+        this->role_environment->fitness(this->current_population[i].get_genome()) <<std::endl;
     std::cout << this->current_population[i];
   }
 }

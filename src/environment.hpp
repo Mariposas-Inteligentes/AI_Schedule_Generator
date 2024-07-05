@@ -19,7 +19,7 @@ class environment {
   public:
     environment(int amount_microbiologist);
     ~environment();
-    double fitness(std::vector<std::vector<int> > genome);
+    double fitness(std::vector<std::vector<int> >& genome);
     void initial_population(int size, std::vector<role>& population);
     void print_weekdays();
 };
