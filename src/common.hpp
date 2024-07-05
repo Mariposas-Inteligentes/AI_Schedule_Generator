@@ -9,5 +9,10 @@
 #define AMOUNT_WEEKS 4
 #define AMOUNT_DAYS 4
 
+// Genetic Algorithm Parrameters
+
 #define PROBS_MUTATION 10
 #define PROBS_CROSSOVER 70
+
+#define AMOUNT_POPULATION 50
+#define AMOUNT_MICRO 17

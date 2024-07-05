@@ -64,3 +64,7 @@ void role::mutate() {
 void role::write_genome(int row, int col, int value) {
   this->genome[row][col] = value;
 }
+
+std::vector<std::vector<int> >& role::get_genome() {
+  return this->genome;
+}

@@ -49,13 +49,10 @@ void environment::create_microbiologists() {
     file.close();
 }
 
-std::vector<role> environment::initial_population(int size) {
-  std::vector<role> population;
-
+void environment::initial_population(int size, std::vector<role>& population) {
+  population.clear();
   for(int i = 0; i < size; ++size) {
     population.push_back(role(this->amount_microbiologist));
     population[i].create_random_genome();
   }
-
-  return population;
 }

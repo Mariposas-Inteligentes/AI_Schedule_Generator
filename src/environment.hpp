@@ -20,7 +20,7 @@ class environment {
     environment(int amount_microbiologist);
     ~environment();
     double fitness(std::vector<std::vector<int> > genome);
-    std::vector<role> initial_population(int size);
+    void initial_population(int size, std::vector<role>& population);
 };
 
 #endif

@@ -20,6 +20,7 @@ class role {
     std::vector<role> crossover(role& dad);
     void mutate();
     void create_random_genome();
+    std::vector<std::vector<int> >& get_genome();
 };
 
 #endif
