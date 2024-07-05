@@ -56,3 +56,8 @@ void environment::initial_population(int size, std::vector<role>& population) {
     population[i].create_random_genome();
   }
 }
+
+
+void environment::print_weekdays() {
+  this->hr->print_schedule();
+}

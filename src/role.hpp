@@ -3,11 +3,14 @@
 
 #include <cstdlib>
 #include <ctime>
+#include <iostream>
 #include <vector>
 
 #include "common.hpp"
 
 class role {
+  friend std::ostream& operator<<(std::ostream& os, const role& r);
+
   private:
     std::vector<std::vector<int> > genome;
     int amount_micro;

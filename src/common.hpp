@@ -9,6 +9,8 @@
 #define AMOUNT_WEEKS 4
 #define AMOUNT_DAYS 4
 
+#define PRINT_CHROMOSOMES 5
+
 // Genetic Algorithm Parrameters
 
 #define PROBS_MUTATION 10

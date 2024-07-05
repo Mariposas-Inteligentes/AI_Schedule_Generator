@@ -5,6 +5,7 @@
 #include <cmath>
 #include <numeric>
 #include <vector>
+#include <iostream>
 
 class hr_agent {
   private:
@@ -24,6 +25,7 @@ class hr_agent {
     ~hr_agent();
     void set_schedule(int week, int day, std::vector<int> workers);
     double fitness(std::vector<std::vector<int> > genome);
+    void print_schedule();
 };
 
 #endif

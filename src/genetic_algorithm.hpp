@@ -7,6 +7,8 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
+
 
 class genetic_algorithm {
   private:
@@ -20,7 +22,9 @@ class genetic_algorithm {
     void mutate(int offspring1, int offspring2);
     void update_fitness(std::vector<role>& population);
     void show_population();
+    void show_schedule();
     void generate_parents(int& first_parent, int& second_parent);
+    void sort_population_by_fitness();
 
   public:
     genetic_algorithm();

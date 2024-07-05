@@ -65,3 +65,14 @@ void role::write_genome(int row, int col, int value) {
 std::vector<std::vector<int> >& role::get_genome() {
   return this->genome;
 }
+
+std::ostream& operator<<(std::ostream& os, const role& r) {
+  os << "Sat Day\tSat Night\tSun Day\tSun Night";
+  for(int week = 0; week< AMOUNT_WEEKS; ++week) {
+    for(int day = 0; day< AMOUNT_DAYS; ++day) {
+      os << r.genome[week][day] << "\t" << std::endl;
+    }
+    os << "\n";
+  }
+  return os;
+}

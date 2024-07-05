@@ -66,34 +66,35 @@ void genetic_algorithm::generate_parents(int& first_parent, int& second_parent) 
   }
 }
 
-
 void genetic_algorithm::mutate(int offspring1, int offspring2) {
   this->new_population[offspring1].mutate();
   this->new_population[offspring2].mutate();
 }
 
 void genetic_algorithm::show_population() {
-  for (int i = 0; i < AMOUNT_POPULATION; ++i) {
-    
+  this->sort_population_by_fitness(); 
+  this->show_schedule();
+  std::cout << "\n\n Weekends" << std::endl;
+  for (int i = 0; i < PRINT_CHROMOSOMES; ++i) {
+    std::cout << "\nRole " << i+1 << std::endl;
+    std::cout << this->current_population[i];
   }
 }
 
-/*
-std::string genetic_algorithm::meaning_day(int day) {
-  std::string day_str = " ";
-  switch(day) {
-    case SAT_DAY:
-      day_str = "SD";
-      break;
-    case SAT_NIGHT:
-      day_str = "SN";
-      break;
-    case SUN_DAY:
-      day_str = "DD";
-      break;
-    case SUN_NIGHT:
-      day_str = "DD";
-      break;
-  }
+void genetic_algorithm::show_schedule() {
+  std::cout << "Week schedule: \n";
+  this->role_environment->print_weekdays();
 }
-*/
+
+void genetic_algorithm::sort_population_by_fitness() {
+  std::vector<size_t> indices(this->current_population.size());
+  std::iota(indices.begin(), indices.end(), 0);
+
+  std::sort(indices.begin(), indices.end(), [this](size_t a, size_t b) { return fitness[a] > fitness[b]; });
+
+  std::vector<role> sorted_population;
+  for (size_t i = 0; i < indices.size(); ++i) {
+    sorted_population.push_back(this->current_population[indices[i]]);
+  }
+  this->current_population = std::move(sorted_population);
+}
