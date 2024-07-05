@@ -8,3 +8,6 @@
 
 #define AMOUNT_WEEKS 4
 #define AMOUNT_DAYS 4
+
+#define PROBS_MUTATION 10
+#define PROBS_CROSSOVER 70

@@ -64,9 +64,9 @@ void hr_agent::check_pairing_week(std::vector<std::vector<int> > genome
 double hr_agent::consult_distribution(std::vector<std::vector<int> > genome){
   std::vector<int> microbiologists_on_call(this->amount_workers, 0);
 
-  for (int day = 0; day < AMOUNT_DAYS; ++day) {
-    for (int week = 0; week < AMOUNT_WEEKS; ++week) {
-      ++microbiologists_on_call[genome[day][week]];
+  for (int week = 0; week < AMOUNT_WEEKS; ++day) {
+    for (int day = 0; day < AMOUNT_DAYS; ++day) {
+      ++microbiologists_on_call[genome[week][day]];
     }
   }
 
@@ -77,10 +77,10 @@ double hr_agent::consult_weekend_dist(std::vector<std::vector<int> > genome){
   std::vector<int> microbiologists_income(this->amount_workers, 0);
 
   for (int week = 0; week < AMOUNT_WEEKS; ++week) {
-    microbiologists_income[genome[SAT_DAY][week]] += 2;
-    microbiologists_income[genome[SAT_NIGHT][week]] += 2;
-    microbiologists_income[genome[SUN_DAY][week]] += 1;
-    microbiologists_income[genome[SUN_NIGHT][week]] += 1;
+    microbiologists_income[genome[week][SAT_DAY]] += 2;
+    microbiologists_income[genome[week][SAT_NIGHT]] += 2;
+    microbiologists_income[genome[week][SUN_DAY]] += 1;
+    microbiologists_income[genome[week][SUN_NIGHT]] += 1;
   }
 
   return this->calculate_variance(microbiologists_income);
@@ -91,9 +91,9 @@ double hr_agent::consult_equality(std::vector<std::vector<int> > genome){
   int no_call = 0;
   double fitness = 0;
 
-  for (int day = 0; day < AMOUNT_DAYS; ++day) {
-    for (int week = 0; week < AMOUNT_WEEKS; ++week) {
-      ++microbiologists_on_call[genome[day][week]];
+  for (int week = 0; week < AMOUNT_WEEKS; ++week) {
+    for (int day = 0; day < AMOUNT_DAYS; ++day) {
+      ++microbiologists_on_call[genome[week][day]];
     }
   }
   
