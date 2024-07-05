@@ -1,9 +1,9 @@
 #ifndef ROLE
 #define ROLE
 
-#include <vector>
 #include <cstdlib>
 #include <ctime>
+#include <vector>
 
 #include "common.hpp"
 
@@ -17,7 +17,7 @@ class role {
   public:
     role(int amount_micro);
     ~role();
-    std::vector<role> crossover(role& dad);
+    void crossover(role& dad, std::vector<role>& offsprings);
     void mutate();
     void create_random_genome();
     std::vector<std::vector<int> >& get_genome();

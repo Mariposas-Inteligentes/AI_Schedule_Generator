@@ -4,6 +4,8 @@
 #include "role.hpp"
 #include "common.hpp"
 #include "environment.hpp"
+
+#include <iostream>
 #include <vector>
 
 class genetic_algorithm {
@@ -15,9 +17,10 @@ class genetic_algorithm {
     environment * role_environment;
 
     void crossover();
-    void mutate();
-    void update_fitness();
+    void mutate(int offspring1, int offspring2);
+    void update_fitness(std::vector<role>& population);
     void show_population();
+    void generate_parents(int& first_parent, int& second_parent);
 
   public:
     genetic_algorithm();

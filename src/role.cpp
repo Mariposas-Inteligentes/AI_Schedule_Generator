@@ -17,8 +17,7 @@ void role::create_random_genome() {
 role::~role() {
 }
 
-std::vector<role> role::crossover(role& dad) {
-  std::vector<role> offsprings;
+void role::crossover(role& dad, std::vector<role>& offsprings) {
   // crossover probs
   int random = rand() % 101;
   int row_crossover = 0;
@@ -43,8 +42,6 @@ std::vector<role> role::crossover(role& dad) {
     offsprings.push_back(dad);
     offsprings.push_back(*this);
   }
-
-  return offsprings; 
 }
 
 void role::mutate() {

@@ -16,3 +16,5 @@
 
 #define AMOUNT_POPULATION 50
 #define AMOUNT_MICRO 17
+
+#define STOP_CONDITION 0.9
