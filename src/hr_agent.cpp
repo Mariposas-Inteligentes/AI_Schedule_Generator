@@ -154,12 +154,12 @@ void hr_agent::print_schedule(){
     std::cout << "Week " << (week+1) << ": \n";
     // Friday
     std::cout << "\tFriday night: \n";
-    for (int micro = 0; micro < this->schedule[week][FRIDAY].size(); ++micro) {
+    for (size_t micro = 0; micro < this->schedule[week][FRIDAY].size(); ++micro) {
       std::cout << "\t\tMicrobiologist " << this->schedule[week][FRIDAY][micro] << "\n";
     }
     // Monday
     std::cout << "\tMonday morning: \n";
-    for (int micro2 = 0; micro2 < this->schedule[week][MONDAY].size(); ++micro2) {
+    for (size_t micro2 = 0; micro2 < this->schedule[week][MONDAY].size(); ++micro2) {
       std::cout << "\t\tMicrobiologist " << this->schedule[week][FRIDAY][micro2] << "\n";
     }
   }

@@ -83,7 +83,7 @@ void genetic_algorithm::mutate(int offspring1, int offspring2) {
 
 void genetic_algorithm::show_population() {
   this->sort_population_by_fitness(); 
-  // this->show_schedule();
+  this->show_schedule();
   std::cout << "\n\nWeekends" << std::endl;
   for (int i = 0; i < PRINT_CHROMOSOMES; ++i) {
     std::cout << "\nRole " << i+1 << " - Fitness: " <<
