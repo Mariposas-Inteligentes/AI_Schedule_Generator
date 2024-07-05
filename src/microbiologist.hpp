@@ -8,9 +8,9 @@ class microbiologist {
   private:
     int id;
     std::vector<std::vector<char> > preferences;
-    const static char WORKING = 'T';
-    const static char NOT_WORKING = 'N';
-    const static char VACATIONS = 'V';
+    const char WORKING = 'T';
+    const char NOT_WORKING = 'N';
+    const char VACATIONS = 'V';
 
   public:
     microbiologist(int id);

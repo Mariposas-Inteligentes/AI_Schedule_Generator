@@ -64,7 +64,7 @@ void hr_agent::check_pairing_week(std::vector<std::vector<int> > genome
 double hr_agent::consult_distribution(std::vector<std::vector<int> > genome){
   std::vector<int> microbiologists_on_call(this->amount_workers, 0);
 
-  for (int week = 0; week < AMOUNT_WEEKS; ++day) {
+  for (int week = 0; week < AMOUNT_WEEKS; ++week) {
     for (int day = 0; day < AMOUNT_DAYS; ++day) {
       ++microbiologists_on_call[genome[week][day]];
     }

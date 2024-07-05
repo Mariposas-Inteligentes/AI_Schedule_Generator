@@ -1,14 +1,16 @@
 #include "role.hpp"
 
 role::role(int amount_micro): 
-    genome(AMOUNT_WEEKS, std::vector<char>(AMOUNT_DAYS, -1),
-    amount_micro(amount_micro)) {
+    genome(AMOUNT_WEEKS, std::vector<int>(AMOUNT_DAYS, -1)) {
   // row are weeks, columns are days
+  this->amount_micro = amount_micro;
 }
 
 void role::create_random_genome() {
-  for(int i = 0; i < amount_micro; ++i) {
-    genome = rand() % amount_micro; // [0, amount_micro[ 
+  for(int week = 0; week< AMOUNT_WEEKS; ++week) {
+    for(int day = 0; day< AMOUNT_DAYS; ++day) {
+      this->genome[week][day] = rand() % amount_micro; // [0, amount_micro[ 
+    }
   }
 }
 
@@ -49,11 +51,11 @@ void role::mutate() {
   int random = rand() % 101;
   if (random < PROBS_CROSSOVER) { // mutate
     int new_ids = rand() % (AMOUNT_DAYS * AMOUNT_WEEKS);
-    int week = rand() % AMOUNTS_WEEKS;
+    int week = rand() % AMOUNT_WEEKS;
     int day = rand() % AMOUNT_DAYS;
     for (int i = 0; i < new_ids; ++i) {
       this->genome[week][day] = rand() % this->amount_micro;
-      week = rand() % AMOUNTS_WEEKS;
+      week = rand() % AMOUNT_WEEKS;
       day = rand() % AMOUNT_DAYS;
     }
   }

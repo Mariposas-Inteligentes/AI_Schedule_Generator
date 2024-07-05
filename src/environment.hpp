@@ -3,8 +3,9 @@
 
 #include "hr_agent.hpp"
 #include "microbiologist.hpp"
-#include  "role.hpp"
+#include "role.hpp"
 #include <fstream>
+#include <iostream>
 #include <sstream>
 
 class environment {
