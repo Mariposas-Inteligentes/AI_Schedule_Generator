@@ -1,12 +1,5 @@
 # Schedule Generator
 
-## Members
-Luis David Solano Santamaría
-
-Angie Sofía Solís Manzano
-
-Emilia María Víquez Mora
-
 ## Problem
 
 Scheduling medical personnel for weekend rotation is a problem that most health centers have to deal with. Every person has their preferences, and there are also policies that need to be followed when assigning people. This program aims to solve this problem for the case of microbiologists.
@@ -23,33 +16,53 @@ The schedule must take into consideration 4 weekends of planning and it also mus
 
 ## Proposed solution:
 
-To solve the problem, a genetic algorithm was proposed. We have two types of agents: microbiologist and HR. There are several microbiologists in the environment, each one has a unique id and knows the preference of the microbiologist that it represents. Also, there is one HR agent, which is in charge of checking the four policies. The algorithm crosses and mutates different schedule options until the global fitness reaches a defined stop condition. 
+To solve the problem, a genetic algorithm mixed with agents in `C++` was proposed. 
 
-In order to calculate fitness, the proportions are: 
+For this purpose, we have two types of agents: microbiologist and human resources (HR). There are several microbiologists in the environment, each one has a unique id and knows the preference of the microbiologist that it represents. Also, there is one HR agent, which is in charge of checking the four work policies. The algorithm crosses and mutates different schedule options until the global fitness reaches a defined stop condition. 
 
-        60% fitness given by HR agent + 40% average fitness given by all microbiologists
+In order to calculate `fitness`, each agent will participate in a voting process where there is an assigned percentage to each opinion. 
 
-Inside each microbiologist, fitness only considers if the desired schedule was met. Inside of the HR agent, fitness consists of:
+This can be observed through the following formula:
 
-                70% first policy + 10% second policy + 10% third policy + 10% the fourth policy
+$60\% \times \text{HRFitness}+40\% \times\text{MicrobiologistsFitness}$
 
-At the end, the total fitness for a schedule results in a number between 0 and 1. 
+Where `fitness` for the HR agent consists of how well each policy was followed:
+
+$\text{HRFitness} = 70\%\times \text{first policy} + 10\%\times \text{second policy} + 10\%\times \text{third policy} + 10\%\times \text{fourth policy}$
+
+And `fitness` for the microbiologists is an average of how well the desired schedules were followed:
+
+$\text{MicrobiologistsFitness}=\frac{\sum_{}^{}MicrobiologistFitness_n}{MicrobiologistAmount}$
 
 ## Use
 
-1. To compile, open a terminal in the project and execute:
+To compile, open a terminal in the project and execute:
 
-        g++ -o schedule src/main.cpp src/genetic_algorithm.cpp src/environment.cpp src/hr_agent.cpp src/microbiologists.cpp
+```
+g++ -o schedule src/main.cpp src/environment.cpp src/genetic_algorithm.cpp src/hr_agent.cpp  src/microbiologist.cpp src/role.cpp
+```
 
-2. To run, execute:
+To run, execute:
 
-        ./schedule.out
+```
+./schedule
+```
 
-The program was made to run in the operating system `Ubuntu 22`, so it is recommended to use this distribution to test it. In order to change the parameters needed to run the genetic algorithm, you can modify the file [common.hpp](./src/common.hpp). And in order to modify the received preferences for each microbiologist, modify the file [microbiologists_weekend.txt](./src/microbiologists_weekends.txt). Where each line contains the preferences of one microbiologist for that month in the order: `Saturday morning`, `Saturday night`, `Sunday morning` and `Sunday night`. Each day can have 3 possible values:
+## Requeriments
+
+The program was made to run in the operating system `Ubuntu 22`, so it is recommended to use this distribution to test it.
+
+In order to change the parameters needed to run the genetic algorithm, you can modify the file [common.hpp](./src/common.hpp). And in order to modify the received preferences for each microbiologist, modify the file [microbiologists_weekend.txt](./files/microbiologists_weekends.txt). Where each line contains the preferences of one microbiologist for that month in the order: `Saturday morning`, `Saturday night`, `Sunday morning` and `Sunday night`. Each day can have 3 possible values:
 
 1. `T`: Want to work
 2. `N`: Do not want to work
 3. `V`: On vacation before or after and don't want to work that weekend.
 
-In order to modify the Friday night and Monday morning schedule you can change the file [microbiologists_workdays.txt](./src/microbiologists_workdays.txt). Where each line is a day, and the numbers are the ids assigned to each microbiologist on call on that shift. The lines alternate between Friday night, and Monday morning for each week. The numbers assigned must correspond to the ID of each microbiologist.
+In order to modify the Friday night and Monday morning schedule you can change the file [microbiologists_workdays.txt](./files/microbiologists_workdays.txt). Where each line is a day, and the numbers are the ids assigned to each microbiologist on call on that shift. The lines alternate between Friday night, and Monday morning for each week. The numbers assigned must correspond to the ID of each microbiologist.
 
+## Members
+Luis David Solano Santamaría
+
+Angie Sofía Solís Manzano
+
+Emilia María Víquez Mora

@@ -1,6 +1,7 @@
 *.out
 src/a.out
 *.exe
+schedule
 .vscode
 bin
 build
