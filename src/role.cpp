@@ -9,8 +9,21 @@ role::role(int amount_micro):
 void role::create_random_genome() {
   for(int week = 0; week< AMOUNT_WEEKS; ++week) {
     for(int day = 0; day< AMOUNT_DAYS; ++day) {
-      this->genome[week][day] = rand() % amount_micro; // [0, amount_micro[ 
+      this->genome[week][day] = rand() % this->amount_micro; // [0, amount_micro[ 
     }
+  }
+
+  int micro = rand() % amount_micro;
+  int week = rand() % AMOUNT_DAYS;
+  int day = rand() % AMOUNT_WEEKS;
+  for (int count = 0; count < this->amount_micro; ++count) {
+    this->genome[week][day] = micro;
+    ++micro;
+    if (micro >= this->amount_micro) {
+      micro = 0;
+    }
+    week = rand() % AMOUNT_DAYS;
+    day = rand() % AMOUNT_WEEKS;
   }
 }
 
