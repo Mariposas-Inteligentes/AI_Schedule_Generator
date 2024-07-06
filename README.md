@@ -24,15 +24,15 @@ In order to calculate `fitness`, each agent will participate in a voting process
 
 This can be observed through the following formula:
 
-$$60\% \times \text{HRFitness}+40\% \times\text{MicrobiologistsFitness}$$
+$$\text{fitness} = 0.6 \times \text{HRFitness}+0.4 \times\text{MicrobiologistsFitness}$$
 
 Where `fitness` for the HR agent consists of how well each policy was followed:
 
-$$\text{HRFitness} = 70\%\times \text{first policy} + 10\%\times \text{second policy} + 10\%\times \text{third policy} + 10\%\times \text{fourth policy}$$
+$$\text{HRFitness} = 0.7\times \text{first policy} + 0.1\times \text{second policy} + 0.0.1\times \text{third policy} + 0.1\times \text{fourth policy}$$
 
 And `fitness` for the microbiologists is an average of how well the desired schedules were followed:
 
-$$\text{MicrobiologistsFitness}=\frac{\sum_{}^{}MicrobiologistFitness_n}{MicrobiologistAmount}$$
+$$\text{MicrobiologistsFitness}=\frac{\sum MicrobiologistFitness_n}{MicrobiologistAmount}$$
 
 ## Use
 
