@@ -9,7 +9,7 @@ Emilia María Víquez Mora
 
 ## Problem
 
-Sheduling medical personale for weekend rotation is a problem that most healt centers have to deal with. Every person has their preferences, and there are also policies that need to be followed when asigning people. This program aims to solve this problem for the case of microbiologists.
+Scheduling medical personnel for weekend rotation is a problem that most health centers have to deal with. Every person has their preferences, and there are also policies that need to be followed when assigning people. This program aims to solve this problem for the case of microbiologists.
 
 In the proposed problem, we have two shifts each day of the weekend, one from 6am to 6pm and the other one from 6pm to 6am. There has to be one microbiologist on each shift. Also, the program has access to the Friday night and Monday morning distribution.
 
@@ -23,13 +23,13 @@ The schedule must take into consideration 4 weekends of planning and it also mus
 
 ## Proposed solution:
 
-To solve the problem, a genetic algorithm was propposed. We have two types of agent: microbiologist and HR. There are several microbiologists in the environment, each one has a unique id and knows the preference of the microbiologist that it represents. Also, there is one HR agent, which is in charge of checking the four policies. The algorithm crosses and mutates different schedule options until the global fitness reaches a defined stop condition. 
+To solve the problem, a genetic algorithm was proposed. We have two types of agents: microbiologist and HR. There are several microbiologists in the environment, each one has a unique id and knows the preference of the microbiologist that it represents. Also, there is one HR agent, which is in charge of checking the four policies. The algorithm crosses and mutates different schedule options until the global fitness reaches a defined stop condition. 
 
 In order to calculate fitness, the proportions are: 
 
         60% fitness given by HR agent + 40% average fitness given by all microbiologists
 
-Inside each microbiologist, fitness only considers if the desired schedule was met. Inside of the HR agent, fitness consits of:
+Inside each microbiologist, fitness only considers if the desired schedule was met. Inside of the HR agent, fitness consists of:
 
                 70% first policy + 10% second policy + 10% third policy + 10% the fourth policy
 
@@ -45,11 +45,11 @@ At the end, the total fitness for a schedule results in a number between 0 and 1
 
         ./schedule.out
 
-The program was made to run in the operating system `Ubuntu 22`, so it is recomended to use this distribution to test it. In order to change the parameters needed to run the genetic algorithm, you can modify the file [common.hpp](./src/common.hpp). And in order to modify the received prefernces for each microbiologist, modify the file [microbiologists_weekend.txt](./src/microbiologists_weekends.txt). Where each line contains the prefferences of one microbiologist for that month in the order: `Saturday morning`, `Saturday night`, `Sunday morning` and `Sunday night`. Each day can have 3 possible values:
+The program was made to run in the operating system `Ubuntu 22`, so it is recommended to use this distribution to test it. In order to change the parameters needed to run the genetic algorithm, you can modify the file [common.hpp](./src/common.hpp). And in order to modify the received preferences for each microbiologist, modify the file [microbiologists_weekend.txt](./src/microbiologists_weekends.txt). Where each line contains the preferences of one microbiologist for that month in the order: `Saturday morning`, `Saturday night`, `Sunday morning` and `Sunday night`. Each day can have 3 possible values:
 
 1. `T`: Want to work
 2. `N`: Do not want to work
 3. `V`: On vacation before or after and don't want to work that weekend.
 
-To order to modify the Friday night and monday morning schedule you can change the file [microbiologists_workdays.txt](./src/microbiologists_workdays.txt). Where each line is a day, and the numbers are the ids asigned to each microbiologist on call on that shift. The lines alternate between Friday night, and Monday morning for each week. The numbers asigned must correspond to the ID of each microbiologist.
+In order to modify the Friday night and Monday morning schedule you can change the file [microbiologists_workdays.txt](./src/microbiologists_workdays.txt). Where each line is a day, and the numbers are the ids assigned to each microbiologist on call on that shift. The lines alternate between Friday night, and Monday morning for each week. The numbers assigned must correspond to the ID of each microbiologist.
 
