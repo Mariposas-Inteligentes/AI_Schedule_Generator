@@ -160,7 +160,7 @@ void hr_agent::print_schedule(){
     // Monday
     std::cout << "\tMonday morning: \n";
     for (size_t micro2 = 0; micro2 < this->schedule[week][MONDAY].size(); ++micro2) {
-      std::cout << "\t\tMicrobiologist " << this->schedule[week][FRIDAY][micro2] << "\n";
+      std::cout << "\t\tMicrobiologist " << this->schedule[week][MONDAY][micro2] << "\n";
     }
   }
 }

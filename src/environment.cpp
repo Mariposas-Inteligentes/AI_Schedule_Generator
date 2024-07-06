@@ -41,7 +41,7 @@ void environment::set_hr_schedule() {
     std::istringstream iss(line);
     std::vector<int> workers;
     int worker;
-
+    
     while (iss >> worker) {
       workers.push_back(worker);
     }
