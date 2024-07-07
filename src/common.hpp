@@ -9,14 +9,23 @@
 #define AMOUNT_WEEKS 4
 #define AMOUNT_DAYS 4
 
-#define PRINT_CHROMOSOMES 5
 
-// Genetic Algorithm Parrameters
+// Fitness percentages:
+#define FIT_MICRO 0.2
+#define FIT_HR 0.8
+#define FIT_CRITERIA1 0.70
+#define FIT_CRITERIA2 0.15
+#define FIT_CRITERIA3 0.05
+#define FIT_CRITERIA4 0.10
 
-#define PROBS_MUTATION 10
+
+// Genetic Algorithm Parameters
+#define PROBS_MUTATION 20
 #define PROBS_CROSSOVER 90
 
-#define AMOUNT_POPULATION 50
+#define AMOUNT_POPULATION 500
 #define AMOUNT_MICRO 17
 
-#define STOP_CONDITION 0.3
+#define STOP_CONDITION 0.9
+#define MAX_ITERATIONS 7000
+#define PRINT_CHROMOSOMES 5

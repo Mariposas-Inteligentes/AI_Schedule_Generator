@@ -26,6 +26,8 @@ class genetic_algorithm {
     void generate_parents(int& first_parent, int& second_parent);
     void sort_population_by_fitness();
 
+    void biggest();
+
   public:
     genetic_algorithm();
     ~genetic_algorithm();

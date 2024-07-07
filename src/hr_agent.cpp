@@ -1,8 +1,5 @@
 #include "hr_agent.hpp"
 
-// (nosotros): borrar
-#include <iostream>
-
 hr_agent::hr_agent(int amount_workers)
     : amount_workers(amount_workers)
     , schedule(AMOUNT_WEEKS, std::vector<std::vector<int> >(2)){
@@ -18,30 +15,16 @@ void hr_agent::set_schedule(int week, int day, std::vector<int> workers){
 double hr_agent::fitness(std::vector<std::vector<int> > genome){
   double fitness = 0;
 
-  fitness += 0.7 * this->consult_legal(genome);
-
-  // TODO(nosotros): borrar
-  // std::cout << "Fitnes pos legal: " << fitness << std::endl;
-
-  fitness += 0.1 * this->consult_distribution(genome);
-
-  // TODO(nosotros): borrar
-  // std::cout << "Fitnes pos dist: " << fitness << std::endl;
-
-  fitness += 0.1 * this->consult_weekend_dist(genome);
-
-  // TODO(nosotros): borrar
-  // std::cout << "Fitnes pos weekend dist: " << fitness << std::endl;
-
-  fitness += 0.1 * this->consult_equality(genome);
-
-  // TODO(nosotros): borrar
-  // std::cout << "Fitnes pos equality: " << fitness << std::endl;
-
+  fitness += FIT_CRITERIA1 * this->consult_legal(genome);
+  fitness += FIT_CRITERIA2 * this->consult_distribution(genome);
+  fitness += FIT_CRITERIA3 * this->consult_weekend_dist(genome);
+  fitness += FIT_CRITERIA4 * this->consult_equality(genome);
+  
   return fitness;
 }
 
 double hr_agent::consult_legal(std::vector<std::vector<int> >& genome){
+  
   double fitness = 5 * AMOUNT_WEEKS;  // there are 5 possible mistakes per week
 
   for (int week = 0; week < AMOUNT_WEEKS; ++week) {

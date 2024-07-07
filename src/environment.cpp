@@ -15,14 +15,14 @@ double environment::fitness(std::vector<std::vector<int> >& genome) {
   double fitness = 0;
   double micro_fitness = 0;
 
-  fitness = 0.6 * this->hr->fitness(genome);
+  fitness = FIT_HR * this->hr->fitness(genome);
   
   for (int micro = 0; micro < this->amount_microbiologist; ++micro) {
     micro_fitness += this->microbiologists[micro].fitness(genome);
   }
 
   micro_fitness /= this->amount_microbiologist;
-  fitness += 0.4 * micro_fitness;
+  fitness += FIT_MICRO * micro_fitness;
 
   return fitness;
 }

@@ -43,11 +43,11 @@ void role::crossover(role& dad, std::vector<role>& offsprings, int initial_pos) 
     for (int row = 0; row < AMOUNT_WEEKS; ++row) {
       for (int col = 0; col < AMOUNT_DAYS; ++col) {
         if (row <= row_crossover && col <= col_crossover) {
-          offsprings[initial_pos].write_genome(row, col, dad.genome[row][col]);
-          offsprings[initial_pos+1].write_genome(row, col, this->genome[row][col]);
+          offsprings[offsprings.size()-2].write_genome(row, col, dad.genome[row][col]);
+          offsprings[offsprings.size()-1].write_genome(row, col, this->genome[row][col]);
         } else {
-          offsprings[initial_pos].write_genome(row, col, this->genome[row][col]);
-          offsprings[initial_pos+1].write_genome(row, col, dad.genome[row][col]);
+          offsprings[offsprings.size()-2].write_genome(row, col, this->genome[row][col]);
+          offsprings[offsprings.size()-1].write_genome(row, col, dad.genome[row][col]);
         }
       }
     }
@@ -59,15 +59,20 @@ void role::crossover(role& dad, std::vector<role>& offsprings, int initial_pos) 
 
 void role::mutate() {
   int random = rand() % 101;
-  if (random < PROBS_CROSSOVER) { // mutate
-    int new_ids = rand() % (AMOUNT_DAYS * AMOUNT_WEEKS);
+  while (random < PROBS_CROSSOVER) {
+    int mutate_type = rand() % 2;
     int week = rand() % AMOUNT_WEEKS;
     int day = rand() % AMOUNT_DAYS;
-    for (int i = 0; i < new_ids; ++i) {
+    if (mutate_type == 0) {
       this->genome[week][day] = rand() % this->amount_micro;
-      week = rand() % AMOUNT_WEEKS;
-      day = rand() % AMOUNT_DAYS;
+    } else {
+      int week2 = rand() % AMOUNT_WEEKS;
+      int day2 = rand() % AMOUNT_DAYS;
+      int temp = this->genome[week][day];
+      this->genome[week][day] = this->genome[week2][day2];
+      this->genome[week2][day2] = temp;
     }
+    random = rand() % 101;
   }
 }
 
