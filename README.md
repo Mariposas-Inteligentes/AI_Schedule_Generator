@@ -48,7 +48,7 @@ To run, execute:
 ./schedule
 ```
 
-## Requeriments
+## Requirements
 
 The program was made to run in the operating system `Ubuntu 22`, so it is recommended to use this distribution to test it.
 
