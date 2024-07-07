@@ -20,12 +20,12 @@
 
 
 // Genetic Algorithm Parameters
-#define PROBS_MUTATION 20
-#define PROBS_CROSSOVER 90
+#define PROBS_MUTATION 30
+#define PROBS_CROSSOVER 80
 
 #define AMOUNT_POPULATION 500
 #define AMOUNT_MICRO 17
 
-#define STOP_CONDITION 0.9
+#define STOP_CONDITION 0.7
 #define MAX_ITERATIONS 7000
 #define PRINT_CHROMOSOMES 5

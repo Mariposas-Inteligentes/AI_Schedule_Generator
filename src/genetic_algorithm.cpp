@@ -11,50 +11,41 @@ genetic_algorithm::~genetic_algorithm(){
 }
 
 void genetic_algorithm::update_fitness(std::vector<role>& population) {
-  this->global_fitness = 0.0;
+  this->fitness_sum = 0.0;
   for (int role = 0; role < AMOUNT_POPULATION; ++role) {
     this->fitness[role] = this->role_environment->fitness(population[role].get_genome());
-    this->global_fitness += this->fitness[role];
+    this->fitness_sum += this->fitness[role];
   }
-  this->global_fitness /= AMOUNT_POPULATION;
-
-  // In case you want to see the evolutiono of the max fitness
-  std::cout << "Best fitness of iteration: "<< this->fitness[0]<<"\n";
-
+  this->global_fitness = fitness_sum / AMOUNT_POPULATION;
 }
 
 void genetic_algorithm::run(){
-  // Generate initial population
+  // Generate initial population and calculate fitness
   this->role_environment->initial_population(AMOUNT_POPULATION, this->current_population);
-  
-  // Calculate fitness of each chromosome
   this->update_fitness(this->current_population);
+  this->sort_population_by_fitness();  
 
   std::cout << "Initial population: \n";
-  this->sort_population_by_fitness();  
   this->show_population();
-  //this->biggest();
 
   std::cout << "\n\nCalculating final population... \n\n";
 
-  int cont = 0;
-  while(this->fitness[0] < STOP_CONDITION && cont < MAX_ITERATIONS) {
-    std::cout << "Iteration " << cont++ << "___________________________\n";
+  int counter = 0;
+  while(this->fitness[0] < STOP_CONDITION && counter < MAX_ITERATIONS) {
+    std::cout << "Iteration " << counter++ << "___________________________\n";
     this->new_population.clear();
     // Crossover chromosomes and attempt to mutate them
     this->crossover();
     // Place new_population in current_population
     this->current_population = this->new_population;
-
     // Update fitness of current_popultion
     this->update_fitness(this->current_population);
     this->sort_population_by_fitness();
+    // In case you want to see the evolution of the max fitness
+    std::cout << "Best fitness of iteration: "<< this->fitness[0]<<"\n";
   }
   std::cout << "\n\nFinal population: \n";
   this->show_population();
-  std::cout << "Population average: " << this->global_fitness << "\n";
-
-  //this->biggest();
 }
 
 void genetic_algorithm::crossover() {
@@ -69,12 +60,26 @@ void genetic_algorithm::crossover() {
 }
 
 void genetic_algorithm::generate_parents(int& first_parent, int& second_parent) {
-  first_parent = 0;
-  second_parent = 0;
-  while (first_parent + second_parent <= (this->global_fitness*2)) {
-    first_parent = rand() % AMOUNT_POPULATION;
-    while (first_parent == second_parent) {
-      second_parent = rand() % AMOUNT_POPULATION;
+  double first_random = static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX / this->fitness_sum);
+  double second_random = 0.0;
+  // Generate the first parent
+  for (int i = 0; i < AMOUNT_POPULATION; ++i) {
+    if (first_random <= this->fitness[i]) {
+      first_parent = i;
+      break;
+    }
+    first_random -= this->fitness[i];
+  }
+  // Generate the second parent
+  second_parent = first_parent;
+  while (first_parent == second_parent) {
+    second_random = static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX / this->fitness_sum);
+    for (int i = 0; i < AMOUNT_POPULATION; ++i) {
+      if (second_random <= this->fitness[i]) {
+        second_parent = i;
+        break;
+      }
+      second_random -= this->fitness[i];
     }
   }
 }
@@ -113,10 +118,4 @@ void genetic_algorithm::sort_population_by_fitness() {
   }
   this->current_population = std::move(sorted_population);
   this->fitness = std::move(sorted_fitness);
-}
-
-void genetic_algorithm::biggest() {
-  for(int i = 0; i < AMOUNT_POPULATION; ++i) {
-    std::cout << fitness[i] << "\n";
-  }
 }
