@@ -61,7 +61,7 @@ In order to change the parameters needed to run the genetic algorithm, you can m
 In order to modify the Friday night and Monday morning schedule you can change the file [microbiologists_workdays.txt](./files/microbiologists_workdays.txt). Where each line is a day, and the numbers are the ids assigned to each microbiologist on call on that shift. The lines alternate between Friday night, and Monday morning for each week. The numbers assigned must correspond to the ID of each microbiologist.
 
 ## Example output
-As you can see, the program prints the initial and final population along with the progress of the best role of each iteration for the user to see how it evolves. 
+As you can see, the program prints the initial and final population along with the progress of the best role of each iteration for the user to see how it evolves. Given the nature of the program, since the fitness function involves the requests of all the microbiologists and the policies of the medical center, it is expected that the best solution achieved does not involve every agent being completely satisfied. We can see that the propposed schedule as the best solution found is legal, for there is no one with two shifts in a row and only two microbiologist do not have any assigned shift. Also, only one of them has two shifts (two sunday night shifts, which is part of the preferences of this worker). Overall, we can say that the algorithm produced a good solution solution. Here you can see the output given by the program:
 
 ```
 Initial population: 
