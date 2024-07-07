@@ -17,7 +17,9 @@ void genetic_algorithm::update_fitness(std::vector<role>& population) {
     this->global_fitness += this->fitness[role];
   }
   this->global_fitness /= AMOUNT_POPULATION;
-  std::cout << "Fit top actual: "<< this->fitness[0]<<"\n";
+
+  // In case you want to see the evolutiono of the max fitness
+  std::cout << "Best fitness of iteration: "<< this->fitness[0]<<"\n";
 
 }
 

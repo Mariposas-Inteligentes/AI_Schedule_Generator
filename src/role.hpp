@@ -5,6 +5,7 @@
 #include <ctime>
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 #include "common.hpp"
 
